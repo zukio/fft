@@ -1,10 +1,10 @@
-//線にグロウをかける
-//サークルを動かす
-//ずっと背景白だと線が見えなくなる
-//前の音との高低差が大きいとき紙吹雪
-
+/* 読み込んだ音楽ファイルに応じてグラフィックを変化させるプログラム ****************************************************
+ * minim、minim.analysisライブラリが必要です
+ * スタート画面（選曲）と再生画面（グラフィック描画）の２ステータスがあります
+/* ************************************************************************************************************/
 boolean status;
 
+// 変化させる要素
 int beatNum, typeNum;
 float eRadius;
 float eZoom;
@@ -13,16 +13,15 @@ float volume;
 float max;
 float velocity;
 boolean hide = false;
-
-
 color bg;
 color strokeColor;
 
 color colKick;
 color colSnare;
 color colHat;
+color col;
 
-
+// 初期設定
 void setup(){
   size(1280, 800, P3D);
   //fullScreen(P3D);
@@ -49,6 +48,8 @@ void musicSetup(){
   max = height*0.7;
 }
 
+// メインコード
+// スタート画面（選曲）と再生画面（グラフィック描画）分岐
 void draw(){
   background(bg);
   translate(width/2, height/2);  
@@ -59,9 +60,9 @@ void draw(){
   }
 }
 
-
+// 以下再生画面（グラフィック描画）のコード
+// スタート画面（選曲）のコードは別タブ（start）に記述
 void drawMusic(){
-
   
   //音の読み込みはまとめてminimタブに書いたよ
   updateMusic();
@@ -73,9 +74,10 @@ void drawMusic(){
   noFill();
   //円周上にビートの分だけ点を打つ
   if(typeNum > 1){
-    //種類の分だけ増やす
+    //種類の分だけ増やす（種類はビート解析によって自動的に代入される）
     polyPos(volume, beatNum, typeNum);
   } else {
+    //キック、スネア、ハットなどのタイプが検出されなかったらタイプは無視
     pop = new Drop(volume, beatNum);
     pop.drops(strokeColor);
   }
@@ -85,6 +87,7 @@ void drawMusic(){
   
 }
 
+// 背景色などを変化させる
 void colorChange(){
   //int lowBand = 5;
   //int highBand = 15;
@@ -107,7 +110,7 @@ void colorChange(){
   }
 }
 
-
+// ビート解析（キック、スネア、ハットなどが検出されたらそれぞれに応じた図形を描画）
 void beatCnt(){
   beatNum = typeNum = 0;
   //detectSize()を使うと、周波数モードでは現在使用されている周波数帯域の数を（サウンドモードでは常に0を）返します。
@@ -115,7 +118,7 @@ void beatCnt(){
     //isOnset(i)関数を使用すると、周波数モードではビートが検出された時にtrueを返します
     if ( beatFREQ.isOnset(i) ){ beatNum ++; }
    }
-  if ( beatFREQ.isKick() ){typeNum ++; }
+  if ( beatFREQ.isKick() ){ typeNum ++; }
   if ( beatFREQ.isSnare() ){ typeNum ++; }
   if ( beatFREQ.isHat() ){ typeNum ++; }
 
@@ -132,8 +135,8 @@ void beatCnt(){
   //周波数を解析
   gridPict();
 }
-    color col;
 
+// 周波数の線を描く
 void gridPict(){
   pushMatrix();
   //目立つメロディラインを書き出す

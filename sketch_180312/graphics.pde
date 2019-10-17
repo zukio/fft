@@ -1,6 +1,7 @@
+/* 図形・位置算出 *************************************************** */
 Drop pop;
 
-
+// ビート解析で表示させる図形の位置
 void polyPos(float R, int vertexs, int typeNum){
   for (int p = 0; p < typeNum; p++) {
     pushMatrix();
@@ -12,6 +13,7 @@ void polyPos(float R, int vertexs, int typeNum){
   }
 }
 
+// ビート解析で表示させる図形
 void polygon(float R, int vertexs){
   rotate(velocity*frameCount);
   beginShape();
@@ -21,6 +23,7 @@ void polygon(float R, int vertexs){
   endShape(CLOSE);
 }
 
+// きらりんマーク図形
 void astStar(float x, float y, float R){
   pushMatrix();
   translate(x, y);
@@ -66,7 +69,7 @@ class Drop{
   }
 }
 
-
+// 背景グリッド
 PVector[] gridPos;
 int grid, gridH, gridW;
 float gridSize;
