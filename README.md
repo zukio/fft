@@ -1,4 +1,6 @@
 # fft
+fft解析を使用したサウンドビジュアライザー
+３つのプログラムを格納しています
 
 ## sketch_180312
 Sound visualizer
