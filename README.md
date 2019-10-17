@@ -11,12 +11,12 @@ coded by Processing
 sketch_180312.pde
 
 ### details
-start.pde
-minim.pde
+start.pde<br>
+minim.pde<br>
 graphics.pde
 
 ### import
-import ddf.minim.*;
+import ddf.minim.*;<br>
 import ddf.minim.analysis.*;
 
 
@@ -32,14 +32,14 @@ PDF_mask_sound_animation
 PDF_mask_animation
 
 ### import
-ofxAudioAnalizer
-ofxAudioDecoder
+ofxAudioAnalizer<br>
+ofxAudioDecoder<br>
 ofxPDF
 
 
 ## SoundPlayer
 Sound visualizer
-width vector illust
+width Picture
 coded by OF
 
 ### main
@@ -49,7 +49,7 @@ SoundPlayer
 example-emptySoundPlayerDebug
 
 ### import
-ofxAudioAnalyzer
+ofxAudioAnalyzer<br>
 ofxAudioDecoder
 
 
